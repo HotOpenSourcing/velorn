@@ -1,9 +1,11 @@
 {
   "name": "velorn",
-  "version": "0.3.35",
+  "version": "0.3.36",
   "description": "AI-native video editing built around real creative timelines, generative workflows, and local agent control.",
   "main": "electron/main.js",
   "scripts": {
+    "test:media-preparation": "node --test ./tests/mediaPreparation.test.cjs ./tests/mediaPreparationBridge.test.cjs ./tests/mediaPreparationServices.test.mjs ./src/utils/mediaPreparationStatus.test.mjs ./src/utils/mediaPreparationTarget.test.mjs",
+    "check:media-preparation": "node ./scripts/check-media-preparation.cjs",
     "test:export-scheduler": "node --test ./tests/exportScheduler.test.mjs",
     "check:export-worker-scheduling": "node ./scripts/check-export-worker-scheduling.cjs --serve",
     "test:audio-ducking": "node --test ./src/utils/audioDucking.test.mjs ./src/services/audioDucking.test.mjs ./tests/audioDuckingNative.test.mjs ./src/utils/playAroundStore.test.mjs",
@@ -30,8 +32,8 @@
     "test:audio-volume-envelope": "node --test ./src/utils/audioVolumeEnvelope.test.mjs ./src/utils/audioVolumeAutomation.test.mjs ./tests/audioVolumeEnvelopeNative.test.mjs",
     "test:audio-eq": "node --test ./src/utils/audioEq.test.mjs ./src/utils/audioEqStore.test.mjs ./tests/audioEqNative.test.mjs ./tests/audioEqChain.test.mjs",
     "test:shuttle-keyframe-zoom": "node --test ./src/utils/shuttlePlayback.test.mjs ./src/utils/keyframeViewport.test.mjs",
-    "dev": "vite",
-    "build": "vite build",
+    "dev": "node init && vite",
+    "build": "node init && vite build",
     "icons:generate": "icon-gen -i build/icon.png -o build --ico --ico-name icon --icns --icns-name icon",
     "preview": "vite preview",
     "electron": "electron .",
@@ -135,7 +137,7 @@
   "build": {
     "appId": "com.comfystudio.app",
     "productName": "Velorn",
-    "copyright": "Copyright © 2024-2026",
+    "copyright": "Copyright \u00a9 2024-2026",
     "beforePack": "scripts/electron-builder-before-pack.cjs",
     "afterPack": "scripts/electron-builder-after-pack.cjs",
     "directories": {
